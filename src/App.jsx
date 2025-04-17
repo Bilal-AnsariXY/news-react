@@ -5,11 +5,12 @@ import Main from './components/Main'
 
 const App = () => {
   const [search,setSearch] = useState("all")
-  const [data, setData] = useState(null)
-  const api_key = "6a800cf325c14f81b20ddbc2882ea38e" 
+  const [data, setData] = useState(null) 
+  const api_key2 = import.meta.env.VITE_API_KEY;
+  const url = `https://gnews.io/api/v4/search?q=${search}&apikey=${api_key2}`
   async function ch(){
     try {
-      const responce = await fetch(`https://newsapi.org/v2/everything?q=${search}&from=2025-03-15&sortBy=publishedAt&apiKey=${api_key}`);
+      const responce = await fetch(url);
       const x = await responce.json();
       setData(x) ;
       console.log(x);
